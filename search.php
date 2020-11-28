@@ -22,6 +22,15 @@ class Search
     }
 
     /**
+     * @param Array $codigos
+     * @param Array $quantidades
+     */
+    public function items($codigos, $quantidades)
+    {
+        
+    }
+
+    /**
      * Search constructor.
      * @param String $database
      */
