@@ -6,7 +6,6 @@ $json = json_decode(file_get_contents('grl-abaf.json'));
 $search = new Search('produtos.csv');
 $resultado = $search->items($json->codigo, $json->quantidade);
 $total = 0;
-
 ?>
 <!doctype html>
 <html>
