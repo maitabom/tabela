@@ -63,11 +63,16 @@ class Search
         $item->codigo = $data[0];
         $item->nome = $data[1];
         $item->medida = $data[2];
-        $item->preco = floatval($data[3]);
+        $item->preco = $this->todecimal($data[3]);
         $item->fabricante = $data[4];
         $item->quantidade = $quantidade;
-        $item->subtotal = floatval($data[3]) * intval($quantidade);
+        $item->subtotal = $this->todecimal($data[3]) * intval($quantidade);
 
         return $item;
+    }
+
+    private function todecimal($value)
+    {
+        return floatval(str_replace(',', '.', $value));
     }
 }
