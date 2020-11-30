@@ -32,9 +32,9 @@ $total = 0;
                         </th>
                         <th>Nome</th>
                         <th>Fabricante</th>
+                        <th>Quantidade</th>
                         <th>Medida</th>
                         <th>Valor</th>
-                        <th>Quantidade</th>
                         <th>Valor Total</th>
                     </tr>
                 </thead>
@@ -46,9 +46,9 @@ $total = 0;
                         </td>
                         <td><?= $item->nome ?></td>
                         <td><?= $item->fabricante ?></td>
+                        <td><?= $item->quantidade ?></td>
                         <td><?= $item->medida ?></td>
                         <td>R$ <?= number_format($item->preco, 2, ',', '.') ?></td>
-                        <td><?= $item->quantidade ?></td>
                         <td>R$ <?= number_format($item->subtotal, 2, ',', '.') ?></td>
                     </tr>
                     <?php 
