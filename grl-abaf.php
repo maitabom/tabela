@@ -4,7 +4,8 @@ require_once 'search.php';
 $resultado = array();
 $json = json_decode(file_get_contents('grl-abaf.json'));
 $search = new Search('produtos.csv');
-$resultado = $search->items($json->codigo);
+$resultado = $search->items($json->codigo, $json->quantidade);
+$total = 0;
 
 ?>
 <!doctype html>
@@ -33,6 +34,8 @@ $resultado = $search->items($json->codigo);
                         <th>Fabricante</th>
                         <th>Medida</th>
                         <th>Valor</th>
+                        <th>Quantidade</th>
+                        <th>Valor Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,10 +47,27 @@ $resultado = $search->items($json->codigo);
                         <td><?= $item->nome ?></td>
                         <td><?= $item->fabricante ?></td>
                         <td><?= $item->medida ?></td>
-                        <td>R$ <?= $item->preco ?></td>
+                        <td>R$ <?= number_format($item->preco, 2, ',', '.') ?></td>
+                        <td><?= $item->quantidade ?></td>
+                        <td>R$ <?= number_format($item->subtotal, 2, ',', '.') ?></td>
                     </tr>
+                    <?php 
+                        $total = $total + $item->subtotal;
+                    ?>
                     <?php endforeach; ?>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <strong>TOTAL</strong>
+                        </td>
+                        <td>
+                            <strong>
+                                R$ <?= number_format($total, 2, ',', '.') ?>
+                            </strong>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </font>
         <?php else: ?>
